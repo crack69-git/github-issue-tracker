@@ -1,1 +1,0 @@
-<div class="badge badge-soft ${priorityClass} font-medium">${issue.priority}</div>

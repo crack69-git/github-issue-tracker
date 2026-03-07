@@ -86,7 +86,7 @@ function displayIssues(issues) {
         ).join('')}     
                          </div>
                     <div class="divider"></div>
-                    <p class="text-[#64748B]">${issue.author}</p>
+                    <p class="text-[#64748B]">#${issue.id} by  ${issue.author}</p>
                         <p class="text-[#64748B]">${new Date(issue.createdAt).toISOString().split('T')[0]}</p>
                 </div>
             </div>
