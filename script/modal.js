@@ -23,7 +23,7 @@ displayModal = (issue) => {
                 <i class="fa-solid fa-circle text-[5px]"></i>
                 <p>Opened by ${issue.author}</p >
                 <i class="fa-solid fa-circle text-[5px]"></i>
-                <p>${new Date(issue.updatedAt).toLocaleDateString()}</p>
+                <p>${new Date(issue.createdAt).toLocaleDateString()}</p>
             </div >
             <p class="mb-3">${issue.description}</p>
             <div class="card bg-base-100 w-full shadow-sm">
