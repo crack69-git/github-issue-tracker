@@ -26,8 +26,9 @@
                         <h1>GitHub Issues Tracker</h1>
                     </div>
                     <div class="">
-                        <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto" />
-                        <button class="btn btn-primary ml-3">+ New Issue</button>
+                        <input id="search" type="text" placeholder="Search"
+                            class="input input-bordered w-24 md:w-auto" />
+                        <button class="btn btn-primary ml-3" onclick="searchIssues()">Search</button>
                     </div>
                 </div>
             </div>
@@ -35,9 +36,12 @@
     </header>
     <main class="w-11/12 mx-auto py-8 ">
         <section class="bg-white p-6 rounded-lg shadows mb-6">
-            <button class="btn btn-active btn-primary w-30">All</button>
-            <button class="btn btn-outline btn-primary w-30">Open</button>
-            <button class="btn btn-outline btn-primary w-30">Closed</button>
+            <button id="btn-all" onclick="setActiveButton('btn-all'); loadHomepage()"
+                class="btn btn-primary w-30">All</button>
+            <button id="btn-open" onclick="setActiveButton('btn-open'); loadOpenIssues()"
+                class="btn btn-outline btn-primary w-30">Open</button>
+            <button id="btn-closed" onclick="setActiveButton('btn-closed'); loadClosedIssues()"
+                class="btn btn-outline btn-primary w-30">Closed</button>
         </section>
         <section id="issue-container" class="bg-white p-6 rounded-t-lg shadows mb-1">
 
@@ -45,12 +49,18 @@
         <section class="bg-white p-6  shadows mb-6">
             <div id="card-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
 
+
             </div>
 
         </section>
     </main>
 
-    <script src="script/homepage.js"></script>
+    <script src="script/allSection.js"></script>
+    <script src="script/openSection.js"></script>
+    <script src="script/closeSection.js"></script>
+    <script src="script/search.js"></script>
+    <script src="script/search.js"></script>
+
 </body>
 
 </html>
