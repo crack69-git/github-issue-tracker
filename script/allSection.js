@@ -1,5 +1,3 @@
-let allIssues = [];
-
 function setActiveButton(activeId) {
     ['btn-all', 'btn-open', 'btn-closed'].forEach(id => {
         const btn = document.getElementById(id);
@@ -17,10 +15,7 @@ function loadHomepage() {
     const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
     fetch(url)
         .then((response) => response.json())
-        .then((data) => {
-            allIssues = data.data;
-            displayIssues(allIssues);
-        });
+        .then((data) => displayIssues(data.data));
 }
 function displayIssues(issues) {
     const issuesContainer = document.getElementById("issue-container");
@@ -53,11 +48,14 @@ function displayIssues(issues) {
     cardsContainer.innerHTML = "";
     issues.forEach((issue) => {
         const div = document.createElement("div");
+        // Fix dynamic badge class assignment
+        // Use issue.priority from API, fallback if missing
         let priority = issue.priority ? issue.priority.trim() : '';
         let priorityClass = priority === 'high' ? 'badge-secondary' : priority === 'medium' ? 'badge-warning' : 'badge-ghost';
         let borderClass = issue.status === 'open' ? 'border-green-500' : 'border-purple-500';
         div.innerHTML = `
-            <div class="card bg-base-100 shadow-lg border-t-6 ${borderClass} border-primary w-full h-full">
+        
+            <div onclick="modalView('${issue.id}')" class="card bg-base-100 shadow-lg border-t-6 ${borderClass} border-primary w-full h-full cursor-pointer">
                 <div class="card-body">
                     <div class="flex gap-3 justify-between">
                         <img src="assets/Open-Status.png" alt="Open Status" class="w-6 h-6">
@@ -65,7 +63,7 @@ function displayIssues(issues) {
                     </div>
                     <p class="text-sm font-bold">${issue.title}</p>
                     <p class="line-clamp-2 text-xs text-[#64748B]">${issue.description}</p>
-                    <div class="flex gap-2">
+                    <div class="flex flex-wrap gap-2">
                         ${issue.labels.map(label => `
                             <div class="badge badge-soft ${label === 'bug' ? 'badge-error' : label === 'help wanted' ? 'badge-warning' : label === 'enhancement' ? ' badge-success' : 'badge-ghost'}">${label}</div>
 
